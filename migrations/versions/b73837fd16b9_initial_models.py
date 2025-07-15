@@ -1,8 +1,8 @@
-"""Initial user model for SQLite
+"""Initial models
 
-Revision ID: 2f6b0a289446
+Revision ID: b73837fd16b9
 Revises: 
-Create Date: 2025-06-28 15:18:57.591163
+Create Date: 2025-07-15 07:43:19.806820
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2f6b0a289446'
+revision = 'b73837fd16b9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,11 +25,9 @@ def upgrade():
     sa.Column('email', sa.String(length=120), nullable=False),
     sa.Column('password_hash', sa.String(length=128), nullable=False),
     sa.Column('full_name', sa.String(length=100), nullable=True),
-    sa.Column('profile_picture_url', sa.String(length=255), nullable=True),
     sa.Column('role', sa.Enum('STUDENT', 'LECTURER', 'PARENT', 'ADMIN', name='userrole'), nullable=False),
     sa.Column('user_type', sa.Enum('INSTITUTIONAL', 'INDEPENDENT', name='usertype'), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=True),
-    sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('public_id'),
